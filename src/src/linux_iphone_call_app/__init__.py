@@ -1,0 +1,7 @@
+APP_ID = "io.github.jaro.LinuxIphoneCallApp"
+APP_NAME = "Linux iPhone Calls"
+PKG = "linux-iphone-call-app"
+VERSION = "0.1.6"
+BUILD_DATE = "2026-11-12"
+CREATED_BY = "Created by: JGu"
+SUPPORTED_BY = "Supported by Claude"

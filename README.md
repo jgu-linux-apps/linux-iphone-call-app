@@ -4,7 +4,7 @@ Answer and make **iPhone calls on Ubuntu** over Bluetooth. Your laptop acts as a
 kit (like a car): see who is calling, answer on the laptop, keep the call on the iPhone or
 decline it, and call anyone from your iPhone contacts.
 
-**Version 0.1.5** · 2026-11-07
+**Version 0.1.6** · 2026-11-12
 
 **Created by: JGu**  
 **Supported by Claude**
@@ -61,8 +61,10 @@ pipewire --version
 
 ## Install
 
+Download the newest `linux-iphone-call-app_<version>_all.deb` from the [Releases page](https://github.com/jgu-linux-apps/linux-iphone-call-app/releases/latest), then:
+
 ```bash
-sudo apt install ./linux-iphone-call-app_0.1.5_all.deb
+sudo apt install ./linux-iphone-call-app_<version>_all.deb
 linux-iphone-call-app            # or from the app grid: “Linux iPhone Calls”
 ```
 
@@ -70,6 +72,11 @@ Update: quit from the tray (or `pkill -f linux_iphone_call_app`), install the ne
 start again.
 
 ## Run from source
+
+The source code is in the `src/` folder of this repository; the `.deb` packages are not kept in git but
+attached to [GitHub Releases](https://github.com/jgu-linux-apps/linux-iphone-call-app/releases). Pushing a tag `vX.Y.Z` that matches `VERSION` in
+`src/src/linux_iphone_call_app/__init__.py` makes GitHub Actions (`.github/workflows/release.yml`) build the
+package and publish the release. Run the commands below inside `src/`:
 
 ```bash
 sudo apt install python3-gi gir1.2-gtk-3.0 gir1.2-ayatanaappindicator3-0.1 \
@@ -147,6 +154,8 @@ Wymaga PipeWire 1.4+. Wszystkie dane zostają lokalnie na laptopie.
 
 ## Changelog
 
+- **0.1.6** (2026-11-12) – no changes in the app: the repository now keeps the source code in `src/`,
+  and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag)
 - **0.1.5** (2026-11-07) – 3 bundled chill ringtones (Morning, Wave, Droplet) + system; choice in
   the menu with instant preview
 - **0.1.4** (2026-11-07) – mic echo & noise cancellation (WebRTC in PipeWire, on by default);
