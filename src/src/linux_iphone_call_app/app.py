@@ -683,7 +683,8 @@ class Controller:
         d.set_version(f"{VERSION} · {BUILD_DATE}")
         d.set_logo_icon_name(self.theme.app_icon)
         d.set_comments(f"{_('about_desc')}\n\n{CREATED_BY}\n{SUPPORTED_BY}")
-        d.set_license_type(Gtk.License.MIT_X11)
+        d.set_license_type(Gtk.License.CUSTOM)
+        d.set_license("Freeware License (No Modifications).\nFree to use and to share unmodified; modification is not permitted.\nSee /usr/share/doc/linux-iphone-call-app/copyright.")
         d.connect("response", lambda d, *_a: d.destroy())
         d.show()
 

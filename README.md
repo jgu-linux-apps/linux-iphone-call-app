@@ -4,7 +4,7 @@ Answer and make **iPhone calls on Ubuntu** over Bluetooth. Your laptop acts as a
 kit (like a car): see who is calling, answer on the laptop, keep the call on the iPhone or
 decline it, and call anyone from your iPhone contacts.
 
-**Version 0.1.6** · 2026-11-12
+**Version 0.1.7** · 2026-11-12
 
 **Created by: JGu**  
 **Supported by Claude**
@@ -154,6 +154,7 @@ Wymaga PipeWire 1.4+. Wszystkie dane zostają lokalnie na laptopie.
 
 ## Changelog
 
+- **0.1.7** (2026-11-12) – license: the app is now published under the Freeware License (No Modifications), see `LICENSE`; free to use and share unmodified, modification is not permitted. No other changes in the app.
 - **0.1.6** (2026-11-12) – no changes in the app: the repository now keeps the source code in `src/`,
   and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag)
 - **0.1.5** (2026-11-07) – 3 bundled chill ringtones (Morning, Wave, Droplet) + system; choice in
@@ -170,5 +171,5 @@ Wymaga PipeWire 1.4+. Wszystkie dane zostają lokalnie na laptopie.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Created by: JGu · Supported by Claude. The phone handset glyph in the icons is based on Material
+Freeware License (No Modifications) — free to use and to share unmodified; modification is not permitted. See [LICENSE](LICENSE). Versions before 0.1.7 were published under the MIT License. Created by: JGu · Supported by Claude. The phone handset glyph in the icons is based on Material
 Icons “call” (Apache License 2.0, © Google).
