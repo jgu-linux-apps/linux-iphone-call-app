@@ -12,8 +12,8 @@ decline it, and call anyone from your iPhone contacts.
 Part of the series: linux-icloud-photos · linux-icloud-mail · linux-apple-music-player ·
 linux-imessage · **linux-iphone-call-app**.
 
-> 🇵🇱 Odbieranie i wykonywanie połączeń z iPhone'a na Ubuntu przez Bluetooth. Interfejs
-> PL/EN według języka systemu. Opis po polsku na dole.
+> Answer and make iPhone calls on Ubuntu over Bluetooth. Polish and English interface,
+> following the system language.
 
 ## Features
 
@@ -136,22 +136,6 @@ Files written to your config:
   Diagnostics line *App audio stays on iPhone*.
 - Run `linux-iphone-call-app` from a terminal to see logs, and include the Diagnostics text
   in bug reports.
-
----
-
-## Po polsku
-
-**Linux iPhone Calls** – laptop jako zestaw głośnomówiący dla iPhone'a. Gdy ktoś dzwoni,
-widzisz kto, i wybierasz: **Odbierz** (na laptopie), **Na iPhonie** albo **Odrzuć**. W trakcie
-rozmowy: wyciszenie, klawiatura, przenoszenie dźwięku iPhone ⇄ laptop. Dzwonisz z klawiatury
-(z podpowiadaniem kontaktów), z listy kontaktów albo z historii połączeń. Tray, powiadomienia,
-motyw i ikona jasna/ciemna, interfejs PL/EN. Opcja „Dźwięk aplikacji iPhone'a zostaje na
-iPhonie” sprawia, że gry i YouTube grają na telefonie, a na laptopa trafiają tylko rozmowy.
-Redukcja echa i szumów mikrofonu (WebRTC, wbudowane w PipeWire) jest domyślnie włączona.
-Do wyboru 3 spokojne dzwonki: Poranek (marimba), Fala (lo-fi pianino), Kropla (kalimba)
-albo systemowy – menu ☰ → „Dźwięk dzwonka”. Dzwonki są w paczce, nic nie jest pobierane.
-
-Wymaga PipeWire 1.4+. Wszystkie dane zostają lokalnie na laptopie.
 
 ## Changelog
 
