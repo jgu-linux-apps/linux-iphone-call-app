@@ -17,6 +17,7 @@ from .i18n import _  # noqa: E402
 from .notify import Notifier  # noqa: E402
 from .telephony import LIVE, RINGING, Telephony  # noqa: E402
 from .theme import Theme  # noqa: E402
+from .aurora3 import AuroraTheme3  # noqa: E402
 from .tray import Tray  # noqa: E402
 from .ui import IncomingPopup, MainWindow, install_css  # noqa: E402
 
@@ -37,6 +38,27 @@ def data_dir():
 def clean_number(text):
     return "".join(ch for ch in (text or "") if ch in "+0123456789*#")
 
+
+
+def AURORA_EXTRA(p, dark):
+    """Klawiatura, kafle narzędzi i awatary w kolorach Aurory (zielony/czerwony przycisk rozmowy bez zmian)."""
+    a, a2 = p["accent"], p["accent2"]
+    glow = a2 if dark else a
+    return f"""
+.lica-key {{ background-color: {'alpha(#FFFFFF, 0.06)' if dark else 'alpha(#FFFFFF, 0.85)'};
+    border: 1px solid {p['border']}; transition: all 150ms ease-out; }}
+.lica-key:hover {{ background-color: {p['hover']}; box-shadow: 0 0 0 1px alpha({glow}, 0.55), 0 0 14px alpha({glow}, 0.28); }}
+.lica-key:active {{ background-image: linear-gradient(to right, alpha({a}, 0.55), alpha({a2}, 0.45)); }}
+.lica-tool {{ background-color: {'alpha(#FFFFFF, 0.06)' if dark else 'alpha(#FFFFFF, 0.85)'}; border: 1px solid {p['border']}; }}
+.lica-tool:checked {{ background-image: linear-gradient(to right, {a}, {a2}); color: #FFFFFF; }}
+.lica-pill.lica-neutral {{ background-color: {p['hover']}; }}
+.lica-avatar {{ background-image: linear-gradient(160deg, {a}, {a2}); }}
+.lica-bottom {{ border-top-color: {p['border']}; }}
+.lica-number {{ background-color: transparent; border: none; box-shadow: none; }}
+.lica-round, .lica-pill.lica-green, .lica-pill.lica-red {{ border: none; }}
+.lica-green {{ background-image: none; background-color: #30c75a; }}
+.lica-red {{ background-image: none; background-color: #ff3b30; }}
+"""
 
 class Controller:
     def __init__(self, app, hidden):
@@ -59,6 +81,8 @@ class Controller:
         Gtk.IconTheme.get_default().append_search_path(self.icon_dir)
 
         self.theme = Theme()
+        self.look = AuroraTheme3(extra=AURORA_EXTRA)
+        self.look.apply(self.cfg.get("theme"), self.theme.dark)
         self.bluez = Bluez()
         self.bluez.preferred = self.cfg.get("device")
         self.tel = Telephony()
@@ -95,7 +119,7 @@ class Controller:
         self.tray = Tray(self.icon_dir, self.show)
         self._build_menu()
         self._apply_icons()
-        self.theme.connect("changed", lambda *_a: self._apply_icons())
+        self.theme.connect("changed", lambda *_a: (self._apply_icons(), self.look.apply(self.cfg.get("theme"), self.theme.dark)))
 
         self.bluez.connect("changed", lambda *_a: self._on_bluez())
         self.tel.connect("changed", lambda *_a: self._on_tel_changed())
@@ -710,6 +734,11 @@ class Controller:
                                             GLib.Variant("s", self.ringer.name))
         snd.connect("change-state", lambda a, v: (a.set_state(v), self.set_ringtone_sound(v.get_string())))
         app.add_action(snd)
+        if app.lookup_action("theme"):
+            app.remove_action("theme")
+        th = Gio.SimpleAction.new_stateful("theme", GLib.VariantType.new("s"), GLib.Variant("s", self.look.name))
+        th.connect("change-state", lambda a, v: (a.set_state(v), self.set_theme(v.get_string())))
+        app.add_action(th)
         add("refresh", lambda _p: self.refresh_contacts())
         add("diagnostics", lambda _p: self.show_diagnostics())
         add("about", lambda _p: self.show_about())
@@ -743,6 +772,12 @@ class Controller:
             it.set_action_and_target_value("app.ringtone-sound", GLib.Variant("s", key))
             tones.append_item(it)
         menu.append_submenu(_("ringtone_sound"), tones)
+        looks = Gio.Menu()
+        for key in ("system", "aurora"):
+            it = Gio.MenuItem.new(_("theme_" + key), None)
+            it.set_action_and_target_value("app.theme", GLib.Variant("s", key))
+            looks.append_item(it)
+        menu.append_submenu(_("theme"), looks)
         phones = self.bluez.phones()
         if len(phones) > 1:
             sub = Gio.Menu()
@@ -760,6 +795,10 @@ class Controller:
         sec3.append(_("quit"), "app.quit")
         menu.append_section(None, sec3)
         self.win.menu_btn.set_menu_model(menu)
+
+    def set_theme(self, name):
+        self.cfg.set("theme", name)
+        self.look.apply(name, self.theme.dark)
 
     def _choose_device(self, param):
         mac = param.get_string()

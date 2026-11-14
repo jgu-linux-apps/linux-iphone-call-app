@@ -4,7 +4,7 @@ Answer and make **iPhone calls on Ubuntu** over Bluetooth. Your laptop acts as a
 kit (like a car): see who is calling, answer on the laptop, keep the call on the iPhone or
 decline it, and call anyone from your iPhone contacts.
 
-**Version 0.1.7** · 2026-11-12
+**Version 0.1.8** · 2026-11-14
 
 **Created by: JGu**  
 **Supported by Claude**
@@ -30,6 +30,7 @@ linux-imessage · **linux-iphone-call-app**.
 - **Tray** icon with status colors (idle / ringing / in call / missed / offline) and menu;
   closing the window keeps it in the tray, quit from the tray menu
 - **Light/dark theme** following the system, with matching app icon
+- **Aurora theme** (menu → Theme): the shared look of the JGu Linux Apps series, violet-to-cyan gradients and glow, light and dark
 - **PL / EN** UI following the system language
 - Option **“Keep iPhone app audio on the iPhone”**: games, YouTube, music stay on the
   phone; only calls come to the laptop (enabled by default)
@@ -154,6 +155,7 @@ Wymaga PipeWire 1.4+. Wszystkie dane zostają lokalnie na laptopie.
 
 ## Changelog
 
+- **0.1.8** (2026-11-14) – new **Aurora** theme (menu → Theme), the same look as the other apps in the series; light and dark follow the system. The green and red call buttons keep their colours.
 - **0.1.7** (2026-11-12) – license: the app is now published under the Freeware License (No Modifications), see `LICENSE`; free to use and share unmodified, modification is not permitted. No other changes in the app.
 - **0.1.6** (2026-11-12) – no changes in the app: the repository now keeps the source code in `src/`,
   and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag)

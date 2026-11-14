@@ -21,6 +21,7 @@ DEFAULTS = {
     "ringtone_sound": "morning",
     "aec": True,           # WebRTC echo cancel + noise suppression + auto gain
     "first_run_done": False,
+    "theme": "system",     # system | aurora
 }
 
 def _ensure(d):
