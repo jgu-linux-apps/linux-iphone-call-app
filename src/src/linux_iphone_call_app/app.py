@@ -348,6 +348,11 @@ class Controller:
         if c["path"] in self.notified or self.choice.get(c["path"]) in ("iphone", "reject"):
             return
         self.notified.add(c["path"])
+        if not self._live():
+            # Refuse the audio link while ringing: if the user answers on the iPhone itself,
+            # iOS would otherwise hand the audio to the laptop at that very moment.
+            # "Answer on laptop" clears this and activates the audio explicitly.
+            self.tel.set_reject_sco(True)
         name = self._display_name(c)
         num = c.get("number") or ""
         waiting = c["state"] == "waiting"

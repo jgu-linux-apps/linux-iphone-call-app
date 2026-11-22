@@ -4,7 +4,7 @@ Answer and make **iPhone calls on Ubuntu** over Bluetooth. Your laptop acts as a
 kit (like a car): see who is calling, answer on the laptop, keep the call on the iPhone or
 decline it, and call anyone from your iPhone contacts.
 
-**Version 0.1.10** · 2026-11-14
+**Version 0.1.11** · 2026-11-22
 
 **Created by: JGu**  
 **Supported by Claude**
@@ -139,6 +139,7 @@ Files written to your config:
 
 ## Changelog
 
+- **0.1.11** (2026-11-22) – fix: answering on the iPhone itself no longer pulls the call audio to the laptop (the audio link is refused while ringing; "Answer on laptop" still takes it).
 - **0.1.10** (2026-11-14) – new dark-mode app icon in the series style: the app's own symbol on a deep navy tile, the same as the other apps of the series.
 - **0.1.8** (2026-11-14) – new **Aurora** theme (menu → Theme), the same look as the other apps in the series; light and dark follow the system. The green and red call buttons keep their colours.
 - **0.1.7** (2026-11-12) – license: the app is now published under the Freeware License (No Modifications), see `LICENSE`; free to use and share unmodified, modification is not permitted. No other changes in the app.
